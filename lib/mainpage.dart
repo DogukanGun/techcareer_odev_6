@@ -195,6 +195,19 @@ class _HomepageState extends State<Homepage> {
             ),
           ),
         ),
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: (index){},
+          backgroundColor: Colors.black,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.black,
+          items: const [
+            BottomNavigationBarItem(backgroundColor:Colors.black,icon: Icon(Icons.house_outlined,color: Colors.white,),label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.search,color: Colors.white,),label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.slow_motion_video_rounded,color: Colors.white,),label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_outlined,color: Colors.white,),label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.person,color: Colors.white,),label: ""),
+          ],
+        ),
       ),
     );
   }
