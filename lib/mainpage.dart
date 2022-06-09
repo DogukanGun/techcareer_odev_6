@@ -8,12 +8,14 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  var flags = ["icons/flags/png/nl.png","icons/flags/png/de.png","icons/flags/png/fr.png","icons/flags/png/us.png"];
+
   @override
   Widget build(BuildContext context) {
     var screenInfo = MediaQuery.of(context);
     final double screenHeight = screenInfo.size.height;
     final double screenWidth = screenInfo.size.width;
-    return Scaffold(
+    return  Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -131,7 +133,45 @@ class _HomepageState extends State<Homepage> {
 
                   ),
                 ),
-
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: SizedBox(
+                    height: 150,
+                    child: ListView.builder(
+                        shrinkWrap: false,
+                        itemCount: 5,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context,index){
+                          if(index>3){
+                            return Card(
+                              color: Colors.black,
+                              child: Column(
+                                children: const [
+                                  SizedBox(
+                                    height: 100,
+                                    child: CircleAvatar(
+                                      radius: 40, // Ima
+                                      backgroundColor: Colors.grey,// ge radius
+                                      child: CircleAvatar(
+                                        radius: 38,
+                                        backgroundColor: Colors.black,
+                                        child: Icon(
+                                            Icons.add,
+                                            size: 50,
+                                            color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }else{
+                            return StoryCell(index: index,flagLink: flags[index],);
+                          }
+                        }),
+                  ),
+                )
               ],
             ),
           ),
@@ -142,10 +182,34 @@ class _HomepageState extends State<Homepage> {
 }
 
 class StoryCell extends StatelessWidget {
-  const StoryCell({Key? key}) : super(key: key);
+  int index = 0;
+  String flagLink;
+  StoryCell({required this.index,required this.flagLink});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Card(
+      color: Colors.black,
+      child: Column(
+        children: [
+          SizedBox(
+            height: 100,
+            child: CircleAvatar(
+              radius: 40, // Ima
+              backgroundColor: Colors.grey,// ge radius
+              child: CircleAvatar(
+                radius: 38,
+                backgroundImage: AssetImage("image/story_image${index+1}.png"),
+              ),
+            ),
+          ),
+          SizedBox(
+              width: 20,
+              height: 20,
+              child: Image.asset(flagLink, package: 'country_icons')
+          ),
+        ],
+      ),
+    );
   }
 }
